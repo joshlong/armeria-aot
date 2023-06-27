@@ -1,0 +1,30 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.1'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'org.graalvm.buildtools.native' version '0.9.23'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation platform('com.linecorp.armeria:armeria-bom:1.24.1')
+	implementation 'com.linecorp.armeria:armeria-spring-boot3-webflux-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.reflections:reflections:0.10.2'
+	testImplementation 'io.projectreactor:reactor-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
